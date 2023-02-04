@@ -16,14 +16,26 @@ public class Simple_Gun : MonoBehaviour
         gun.maxbullet = 155;
         gun.speed = 1;
         gun.force = 10;
+        gun.bullets = 30;
     }
     private void Update()
     {
 		if (Input.GetMouseButtonUp(0))
 		{
 			Shoot();
-
 		}
+        
+        
+        if(gun.bullets>=6)
+        {
+			if (Input.GetKeyUp(KeyCode.R))
+			{
+				gun.magazine = 6;
+				gun.bullets = gun.bullets - 6;
+
+			}
+		}
+        
 	}
 
     IEnumerator Shooting()
@@ -37,6 +49,11 @@ public class Simple_Gun : MonoBehaviour
 	}    
     void Shoot()
     {
-		StartCoroutine(Shooting());
+        if(gun.magazine > 0)
+        {
+			StartCoroutine(Shooting());
+		}
+		
+        gun.magazine--;
 	}
 }
