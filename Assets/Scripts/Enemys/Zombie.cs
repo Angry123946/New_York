@@ -10,6 +10,7 @@ public class Zombie : MonoBehaviour
 
     private void Start()
     {
+		player.Find("Player");
         zombie.name = "Zombie";
         zombie.health = 10;
         zombie.id = 0;
