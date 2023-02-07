@@ -620,6 +620,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1998223357}
   bullet: {fileID: 568824714405869661, guid: ed1b3f7dcb5deb340a353b2f87e048d7, type: 3}
+  gun:
+    name: 
+    magazine: 0
+    speed: 0
+    maxbullet: 0
+    force: 0
+    bullets: 0
 --- !u!1 &1341281763
 GameObject:
   m_ObjectHideFlags: 0

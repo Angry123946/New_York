@@ -6,11 +6,10 @@ public class Simple_Gun : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bullet;
-    Gun gun = new Gun();
+    [SerializeField] Gun gun;
 
     private void Start()
     {
-      
         gun.name = "Pistol";
         gun.magazine = 6;
         gun.maxbullet = 155;
@@ -18,6 +17,7 @@ public class Simple_Gun : MonoBehaviour
         gun.force = 10;
         gun.bullets = 30;
     }
+
     private void Update()
     {
 		if (Input.GetMouseButtonUp(0))

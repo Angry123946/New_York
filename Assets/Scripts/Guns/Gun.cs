@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+[System.Serializable]
+public class Gun
 {
     public string name;
     public int magazine;

@@ -9,6 +9,6 @@ public class Camera_control : MonoBehaviour
 
     private void Update()
     {
-        transform.position = player.transform.position -pos;
+        transform.position = player.transform.position - pos;
     }
 }
