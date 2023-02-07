@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -341,6 +342,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39790a534677fcb4c8f4f8be188a6b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1468976236}
+  pos: {x: 0, y: 0, z: 1}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,15 +633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 524c87586b330a54e913c7db678008b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 1998223357}
   bullet: {fileID: 568824714405869661, guid: ed1b3f7dcb5deb340a353b2f87e048d7, type: 3}
-  gun:
-    name: 
-    magazine: 0
-    speed: 0
-    maxbullet: 0
-    force: 0
-    bullets: 0
 --- !u!1 &1341281763
 GameObject:
   m_ObjectHideFlags: 0
