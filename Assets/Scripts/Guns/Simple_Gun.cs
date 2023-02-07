@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Simple_Gun : MonoBehaviour
 {
-    public Transform firePoint;
+    
     public GameObject bullet;
-    [SerializeField] Gun gun;
+    Gun gun = new Gun();
 
     private void Start()
     {
@@ -16,44 +16,39 @@ public class Simple_Gun : MonoBehaviour
         gun.speed = 1;
         gun.force = 10;
         gun.bullets = 30;
+        bullet = gun.bullet;
+        
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
 		if (Input.GetMouseButtonUp(0))
 		{
-			Shoot();
+			gun.Shoot();
 		}
         
         
-        if(gun.bullets>=6)
+        if(Input.GetKey(KeyCode.R))
         {
-			if (Input.GetKeyUp(KeyCode.R))
-			{
-				gun.magazine = 6;
-				gun.bullets = gun.bullets - 6;
-
-			}
-		}
+            Reload();
+        }
         
 	}
 
-    IEnumerator Shooting()
+   
+    void Reload()
     {
-        
-		GameObject bullett = Instantiate(bullet, firePoint.position, firePoint.rotation);
-		Rigidbody2D rb = bullett.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * gun.force, ForceMode2D.Impulse);
-		yield return new WaitForSeconds(gun.speed);
 
-	}    
-    void Shoot()
-    {
-        if(gun.magazine > 0)
-        {
-			StartCoroutine(Shooting());
+		if (gun.bullets > 6)
+		{
+			gun.magazine = 6;
+			gun.bullets = gun.bullets - 6;
 		}
-		
-        gun.magazine--;
+		else
+		{
+			gun.magazine = gun.bullets;
+			gun.bullets = 0;
+		}
+
 	}
 }
