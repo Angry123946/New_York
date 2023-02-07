@@ -10,6 +10,5 @@ public class Gun : MonoBehaviour
     public int speed;
     public int maxbullet;
     public int force;
-    public int bullets;
-    
+    public int bullets;   
 }

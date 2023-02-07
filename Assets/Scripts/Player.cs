@@ -6,45 +6,47 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private LayerMask enemy;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float speed;
-    float movex;
-    float movey;
-    Vector2 move;
-    Vector2 mousepos;
-    [SerializeField] Camera cam;
-    public int hp=10;
+
+    private Vector2 move;
+    private int invisibilityFrames = 0;
+
+    public int hp;
 
 
-	private void Update()
+    private void Update()
     {
-        
-		void OnTriggerEnter2D(Collider2D collision)
-		{
-			if (collision.tag == "zombie")
-			{
-                StartCoroutine(wait());
-
-                IEnumerator wait()
-                {
-					hp = hp - 2;
-                    Debug.Log(hp);
-					yield return new WaitForSeconds(2);
-                }
-			}
-		}
-
-		movex = Input.GetAxisRaw("Horizontal");
-        movey = Input.GetAxisRaw("Vertical");
-        move = new Vector2(movex, movey);
-        mousepos = cam.ScreenToWorldPoint(Input.mousePosition);
+        move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 
     private void FixedUpdate()
     {
-        rb.velocity= move * speed;
-        Vector2 lookdir = mousepos-rb.position;
+        //Rotation
+        RotatePlayer();
+
+        //Movement
+        rb.velocity = move * speed;
+
+        CollisionWithEnemyCheck();
+    }
+
+    private void RotatePlayer()
+    {
+        Vector2 lookdir = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - rb.position;
         float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;
+    }
+
+    private void CollisionWithEnemyCheck()
+    {
+        if ((GetComponent<BoxCollider2D>().IsTouchingLayers(enemy) == true) && (invisibilityFrames == 0))
+        {
+            hp = hp - 2;
+            invisibilityFrames = 100;
+        }
+
+        if (invisibilityFrames > 0) invisibilityFrames--;
     }
 }

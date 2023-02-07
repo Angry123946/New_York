@@ -10,7 +10,7 @@ public class Simple_Gun : MonoBehaviour
 
     private void Start()
     {
-        
+      
         gun.name = "Pistol";
         gun.magazine = 6;
         gun.maxbullet = 155;

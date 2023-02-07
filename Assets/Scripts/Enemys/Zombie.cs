@@ -10,7 +10,7 @@ public class Zombie : MonoBehaviour
 
     private void Start()
     {
-		player.Find("Player");
+		player = GameObject.Find("Player").transform;
         zombie.name = "Zombie";
         zombie.health = 10;
         zombie.id = 0;
@@ -23,13 +23,16 @@ public class Zombie : MonoBehaviour
 			Debug.Log("I m die");
 			Destroy(gameObject);
 		}
-
-		Vector3 direction = player.position - transform.position;
-		direction = direction.normalized;
-		transform.position += direction * zombie.speed * Time.deltaTime;
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
+    private void FixedUpdate()
+    {
+		Vector3 direction = player.position - transform.position;
+		direction = direction.normalized;
+		GetComponent<Rigidbody2D>().velocity = direction * zombie.speed;
+	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.tag == "bullet")
 		{
