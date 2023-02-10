@@ -17,11 +17,15 @@ public class Gun : MonoBehaviour
     
 
 
-    private void Awake()
+    private void Start()
     {
-        firePoint.Find("Bullet/FirePoint");
-        
-    }
+		firePoint = GameObject.Find("FirePoint").transform;
+
+		if (firePoint != null)
+			Debug.Log("istnieje");
+		else
+			Debug.Log("nie ma");
+	}
     public void Shoot()
     {
 		if (magazine > 0)

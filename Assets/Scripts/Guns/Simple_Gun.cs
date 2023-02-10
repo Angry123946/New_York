@@ -16,9 +16,10 @@ public class Simple_Gun : MonoBehaviour
         gun.speed = 1;
         gun.force = 10;
         gun.bullets = 30;
-        bullet = gun.bullet;
-        
-    }
+		gun.bullet = bullet;
+
+
+	}
 
     private void FixedUpdate()
     {

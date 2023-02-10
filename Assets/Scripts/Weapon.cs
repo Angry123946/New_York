@@ -14,7 +14,6 @@ public class Weapon : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             Shoot();
-            
         }
     }
 
