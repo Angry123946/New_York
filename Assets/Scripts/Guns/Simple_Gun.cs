@@ -6,19 +6,18 @@ public class Simple_Gun : MonoBehaviour
 {
     
     public GameObject bullet;
-    Gun gun = new Gun();
+    private Gun gun;
 
     private void Start()
     {
+        gun = GetComponent<Gun>();
         gun.name = "Pistol";
         gun.magazine = 6;
         gun.maxbullet = 155;
         gun.speed = 1;
         gun.force = 10;
         gun.bullets = 30;
-		gun.bullet = bullet;
-
-
+		
 	}
 
     private void FixedUpdate()
@@ -36,7 +35,6 @@ public class Simple_Gun : MonoBehaviour
         
 	}
 
-   
     void Reload()
     {
 

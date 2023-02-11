@@ -3,45 +3,45 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
-[System.Serializable]
+
 public class Gun : MonoBehaviour
 {
-    public string name;
+	public string name;
     public int magazine;
     public int speed;
     public int maxbullet;
     public int force;
     public int bullets;
-	Transform firePoint;
+	public Transform firePoint;
 	public GameObject bullet;
-    
+	private float lastShootTime;
+	
 
-
-    private void Start()
+	public void Shoot()
     {
-		firePoint = GameObject.Find("FirePoint").transform;
 
-		if (firePoint != null)
-			Debug.Log("istnieje");
-		else
-			Debug.Log("nie ma");
-	}
-    public void Shoot()
-    {
-		if (magazine > 0)
+		float shootDelay = 1.0f / speed;
+		float nextShootTime = lastShootTime + shootDelay;
+		float timeNow = Time.time;
+
+		if (nextShootTime > timeNow)
 		{
-			StartCoroutine(Shooting());
+			return; 
+		}
+
+		
+		lastShootTime = timeNow;
+		if (magazine <= 0)
+		{
+			return;
 		}
 		magazine--;
-	}
-
-    public IEnumerator Shooting()
-    {
+		
 
 		GameObject bullett = Instantiate(bullet, firePoint.position, firePoint.rotation);
 		Rigidbody2D rb = bullett.GetComponent<Rigidbody2D>();
 		rb.AddForce(firePoint.up * force, ForceMode2D.Impulse);
-		yield return new WaitForSeconds(speed);
 	}
-    
 }
+    
+

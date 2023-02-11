@@ -10,11 +10,12 @@ public class Zombie : MonoBehaviour
 
     private void Start()
     {
+		
 		player = GameObject.Find("Player").transform;
         zombie.name = "Zombie";
         zombie.health = 10;
         zombie.id = 0;
-        zombie.speed = 2;
+        zombie.speed = UnityEngine.Random.Range(1, 5);
     }
     private void Update()
     {
